@@ -1,0 +1,35 @@
+https://github.com/szyper
+https://www.apachefriends.org/pl/index.html
+C:\xampp\php\php.ini
+upload_max_filesize	40M	40M
+Typ serwera: MariaDB
+
+httpd.conf
+DocumentRoot "C:/xampp/htdocs"
+<Directory "C:/xampp/htdocs">
+
+mysqld.exe
+
+https://gitforwindows.org/
+
+git clone https://github.com/szyper/wsb_zIinz_2_K27_Inf-W08-.git
+
+touch file
+echo "wsb" > file
+git add *
+git commit
+
+git config --global user.email "email@gmail.com"
+git config --global user.name "username"
+
+git commit
+vim -> i, :wq
+
+git push origin main
+
+http://localhost/git/studia/wsb/wsb_zIinz_2_K27_Inf-W08-/1_podstawy.php
+pwd
+
+
+
+

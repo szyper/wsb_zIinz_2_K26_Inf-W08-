@@ -1,0 +1,53 @@
+    1  git clone https://github.com/szyper/zskprivate.git
+    2  cd zskprivate/
+    3  git pull
+    4  git pull
+    5  git add *
+    6  git status
+    7  git commit -m "new files"
+    8  git config --global user.email "zskgit@gmail.com"
+    9  git config --global user.name "szyper"
+   10  git clone https://github.com/szyper/wsb_zIinz_2_K26_Inf-W08-.git
+   11  ls
+   12  cd wsb_zIinz_2_K26_Inf-W08-/
+   13  ls
+   14  touch index.php
+   15  ls
+   16  echo "wsb" > index.php 
+   17  git status
+   18  git add *
+   19  git status
+   20  git commit
+   21  git push origin main
+   22  clear
+   23  git status
+   24  git add *
+   25  git commit -m "db"
+   26  git push origin main
+   27  git clone https://github.com/szyper/wsb_zIinz_2_K27_Inf-W08-.git
+   28  ls
+   29  cd wsb_zIinz_2_K27_Inf-W08-/
+   30  ls
+   31  ls
+   32  ls
+   33  cat zajecia.txt 
+   34  cat zajecia.txt 
+   35  git status
+   36  git add *
+   37  git status
+   38  git commit
+   39  git status
+   40  git add *
+   41  git commit 
+   42  git status
+   43  git push origin main
+   44  git add *
+   45  git commit 
+   46  git push origin main
+   47  git status
+   48  pwd
+   49  git add *
+   50  git commit -m "add file"
+   51  git push origin main
+   52  history
+   53  history > historia

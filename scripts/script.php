@@ -1,3 +1,3 @@
 <?php
-  echo "Connect db";
+  echo "<hr>Skrypt<hr>";
  ?>

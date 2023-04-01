@@ -1,39 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="pl" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title></title>
   </head>
   <body>
-    <h4>Lista</h4>
-    <ul>
-      <li>Poznań</li>
-      <li>Łódź</li>
-      <li>Gniezno</li>
-    </ul>
-
+<h4>Lista</h4>
+<ul>
+  <li>Poznań</li>
+  <li>Gniezno</li>
+  <li>Jarocin</li>
+</ul>
 <?php
-  $city = "Środa wlkp.";
+  $city = "Września";
   echo <<< LIST
     <ul>
       <li>Poznań</li>
-      <li>Łódź</li>
       <li>Gniezno</li>
+      <li>Jarocin</li>
       <li>$city</li>
     </ul>
 LIST;
-
-echo "Dodanie skryptu:<br>";
-//include() include_once(), require(), require_once()
-
-// include("test.php");
-// require("test.php");
-
-require_once("./scripts/script.php");
-require_once("./scripts/script.php");
-
-echo "<br>string";
-
  ?>
+ <h3>Zawartość skryptu:</h3>
+<?php
+  //include, include_once, require, require_once
+  //include "./scripts/script1.php";
+  @include "./scripts/script1.php";
+  include_once "./scripts/script.php";
+
+  //require "./scripts/script1.php";
+
+  echo "Zawartość po skrypcie";
+?>
   </body>
 </html>
