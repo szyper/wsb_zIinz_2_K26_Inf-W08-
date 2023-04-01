@@ -10,6 +10,16 @@
 </head>
 <body>
 <h4>Użytkownicy</h4>
+<?php
+  if (isset($_GET["deleteUserId"])){
+	  if ($_GET["deleteUserId"] == 0){
+		  echo "Nie udało się usunąć rekordu!<hr>";
+	  }else{
+		  echo "Udało się usunąć rekordu o id=$_GET[deleteUserId]<hr>";
+	  }
+  }
+
+?>
 <table>
   <tr>
     <th>Imię</th>
@@ -21,7 +31,7 @@
   </tr>
 <?php
 	require_once "../scripts/connect.php";
-$sql = "SELECT `u`.`firstName` as `imie`, `u`.`lastName`, `u`.`birthday`, `c`.`city`, `s`.`state`, `co`.`country` FROM `users` u JOIN `cities` c ON `u`.`city_id`=`c`.`id` JOIN `states` s ON `c`.`state_id`=`s`.`id` JOIN `countries` co ON `s`.`country_id`=`co`.`id`;";
+$sql = "SELECT `u`.`id` `userid`, `u`.`firstName` as `imie`, `u`.`lastName`, `u`.`birthday`, `c`.`city`, `s`.`state`, `co`.`country` FROM `users` u JOIN `cities` c ON `u`.`city_id`=`c`.`id` JOIN `states` s ON `c`.`state_id`=`s`.`id` JOIN `countries` co ON `s`.`country_id`=`co`.`id`;";
   $result = $conn->query($sql);
   while($user = $result->fetch_assoc()){
     echo <<< TABLEUSERS
@@ -32,11 +42,13 @@ $sql = "SELECT `u`.`firstName` as `imie`, `u`.`lastName`, `u`.`birthday`, `c`.`c
         <td>$user[city]</td>
         <td>$user[state]</td>
         <td>$user[country]</td>
+        <td><a href="../scripts/delete_user.php?userId=$user[userid]">Usuń</a></td>
       </tr>
 TABLEUSERS;
   }
   echo "</table>";
   $conn->close();
 ?>
+
 </body>
 </html>
