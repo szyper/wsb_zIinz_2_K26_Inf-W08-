@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!doctype html>
 <html lang="pl">
 <head>
@@ -19,7 +22,12 @@
 	  }
   }
 
+  if (isset($_SESSION["error"])){
+    echo "<h4>$_SESSION[error]</h4>";
+    unset($_SESSION["error"]);
+  }
 ?>
+
 <table>
   <tr>
     <th>Imię</th>
@@ -60,7 +68,16 @@ TABLEUSERS;
         <input type="text" name="firstName" placeholder="Dodaj imię" autofocus required><br><br>
         <input type="text" name="lastName" placeholder="Dodaj nazwisko"><br><br>
         <input type="date" name="birthday">Data urodzenia<br><br>
-        <input type="text" name="city_id"  placeholder="Dodaj Miasto"><br><br>
+
+        <select name="city_id">
+ADDUSERFORM;
+        $sql = "SELECT id, city from cities;";
+        $result = $conn->query($sql);
+        while ($city = $result->fetch_assoc()){
+          echo "<option value='$city[id]'>$city[city]</option>";
+        }
+	    echo <<< ADDUSERFORM
+        </select><br><br>
         <input type="submit" value="Dodaj użytkownika">
       </form>
 ADDUSERFORM;
