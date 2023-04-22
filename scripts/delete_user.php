@@ -8,8 +8,8 @@ $sql = "DELETE FROM users WHERE `users`.`id` = $_GET[userId]";
 $conn->query($sql);
 if ($conn->affected_rows == 0){
 //	header("location: ../3_db/3_db_table_delete.php?deleteUserId=0");
-	header("location: ../3_db/4_db_table_delete_add.php?deleteUserId=0");
+	header("location: ../3_db/5_db_table_delete_add_update.php?deleteUserId=0");
 }else{
 //	header("location: ../3_db/3_db_table_delete.php?deleteUserId=$_GET[userId]");
-	header("location: ../3_db/4_db_table_delete_add.php?deleteUserId=$_GET[userId]");
+	header("location: ../3_db/5_db_table_delete_add_update.php?deleteUserId=$_GET[userId]");
 }
