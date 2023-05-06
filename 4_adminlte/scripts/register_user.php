@@ -35,14 +35,22 @@ if ($error != 0){
 }
 
 require_once "./connect.php";
-$stmt = $conn->prepare("INSERT INTO `users` (`city_id`, `email`, `firstName`, `lastName`, `birthday`, `password`, `created_at`) VALUES (?, ?, ?, ?, ?, ?, current_timestamp())");
 
-$stmt->bind_param("ssssss", $_POST["city_id"], $_POST["email1"], $_POST["firstName"], $_POST["lastName"], $_POST["birthday"], $_POST["pass1"]);
+try {
+	$stmt = $conn->prepare("INSERT INTO `users` (`city_id`, `email`, `firstName`, `lastName`, `birthday`, `password`, `created_at`) VALUES (?, ?, ?, ?, ?, ?, current_timestamp())");
 
-$stmt->execute();
+	$pass = password_hash($_POST["pass1"], PASSWORD_ARGON2ID);
 
-if ($stmt->affected_rows == 1){
-	$_SESSION["success"] = "Prawidłowo dodano użytkownika $_POST[firstName] $_POST[lastName]";
+	$stmt->bind_param("ssssss", $_POST["city_id"], $_POST["email1"], $_POST["firstName"], $_POST["lastName"], $_POST["birthday"], $pass);
+
+	$stmt->execute();
+
+	if ($stmt->affected_rows == 1){
+		$_SESSION["success"] = "Prawidłowo dodano użytkownika $_POST[firstName] $_POST[lastName]";
+		header("location: ../pages");
+	}
+}catch (mysqli_sql_exception $e){
+	$_SESSION["error"] = "Błędne dane: ". $e->getMessage();
+	echo "<script>history.back()</script>";
+	exit();
 }
-
-header("location: ../pages");
