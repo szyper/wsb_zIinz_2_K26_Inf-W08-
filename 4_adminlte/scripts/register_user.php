@@ -19,4 +19,19 @@ if (!isset($_POST["terms"])){
 	$error = 1;
 }
 
+if ($_POST["pass1"] != $_POST["pass2"]){
+	$_SESSION["error"] = "Hasła są różne!";
+	$error = 1;
+}
+
+if ($_POST["email1"] != $_POST["email2"]){
+	$_SESSION["error"] = "Adresy email są różne!";
+	$error = 1;
+}
+
+if ($error != 0){
+	echo "<script>history.back()</script>";
+	exit();
+}
+
 echo "ok";
