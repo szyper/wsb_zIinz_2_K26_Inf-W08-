@@ -19,19 +19,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		$stmt->execute();
 		$result = $stmt->get_result();
 		$user = $result->fetch_assoc();
-		$stmt->close();
 		//echo $user["email"]." ".$user["password"];
 
 		if (password_verify($_POST["pass"], $user["password"])){
 			//zalogowany
+			$_SESSION["logged"]["logo"] = $user["logo"];
 			$_SESSION["logged"]["firstName"] = $user["firstName"];
-			$_SESSION["logged"]["lastName"] = $user["firstName"];
+			$_SESSION["logged"]["lastName"] = $user["lastName"];
 			$_SESSION["logged"]["logged_in"] = true;
 			$_SESSION["logged"]["role_id"] = $user["role_id"];
 			//session_regenerate_id();
 			$_SESSION["logged"]["session_id"] = session_id();
 			//echo session_id();
 
+			$user = $user["id"];
+			$status = 1;
+			$ip = $_SERVER["REMOTE_ADDR"];
+			$stmt = $conn->prepare("INSERT INTO `logs` (`user_id`, `status`, `address_ip`) VALUES ( ?, ?, ?);");
+			$stmt->bind_param("iss", $user, $status, $ip);
+			$stmt->execute();
+			$stmt->close();
 
 			//czas sesji
 			//session.gc_maxlifetime=1440  => php.ini
@@ -58,6 +65,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 			//niezalogowany
 			$_SESSION["error"] = "Błędny login lub hasło!";
 			echo "<script>history.back()</script>";
+			//error log
+			$user = $user["id"];
+			$status = 0;
+			$ip = $_SERVER["REMOTE_ADDR"];
+			$stmt = $conn->prepare("INSERT INTO `logs` (`user_id`, `status`, `address_ip`) VALUES ( ?, ?, ?);");
+			$stmt->bind_param("iss", $user, $status, $ip);
+			$stmt->execute();
+			$stmt->close();
 		}
 
 	}catch (mysqli_sql_exception $e){
